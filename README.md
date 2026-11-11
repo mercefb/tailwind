@@ -1,6 +1,6 @@
 # Tailwind CSS en DIW
 
-Material para aprender **Tailwind CSS v4** en el módulo de Diseño de Interfaces Web (2.º DAW).
+Material para aprender **Tailwind CSS v4**.
 
 Son 8 lecciones. Cada una tiene una explicación, ejemplos que se ven en vivo con su código debajo, una tabla de referencia rápida y un ejercicio con la solución desplegable.
 
