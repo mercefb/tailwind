@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tailwind CSS en DIW</title>
+  <link rel="stylesheet" href="css/lecciones.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="pagina">
+  <header class="cabecera">
+    <div class="cabecera-interior">
+      <a href="index.html">Tailwind CSS en DIW</a>
+      <span>Índice</span>
+    </div>
+  </header>
+
+  <main class="contenido">
+    <section>
+      <div class="texto">
+        <h1>Tailwind CSS en DIW</h1>
+        <p>Ocho lecciones para aprender Tailwind CSS v4. Cada lección tiene explicación, ejemplos con su código, una tabla de referencia y un ejercicio resuelto.</p>
+        <p class="nota">Estas páginas cargan Tailwind por CDN, así que necesitan conexión a internet. Para el proyecto de clase se usa Vite: mira la carpeta <code>proyecto-vite</code>.</p>
+      </div>
+
+      <!-- Este índice ya está maquetado con Tailwind: grid responsive + estados hover y focus -->
+      <nav class="mt-8 grid gap-4 sm:grid-cols-2" aria-label="Lecciones">
+        <a href="01-introduccion.html" class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-sky-600">
+          <span class="text-sm font-semibold text-sky-700">Lección 1</span>
+          <span class="mt-1 block text-lg font-bold text-slate-900">Introducción</span>
+          <span class="mt-1 block text-slate-600">Utility-first, CDN y cómo leer una clase</span>
+        </a>
+        <a href="02-espaciado-tamanos.html" class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-sky-600">
+          <span class="text-sm font-semibold text-sky-700">Lección 2</span>
+          <span class="mt-1 block text-lg font-bold text-slate-900">Espaciado y tamaños</span>
+          <span class="mt-1 block text-slate-600">Padding, margin, anchos, altos y valores arbitrarios</span>
+        </a>
+        <a href="03-tipografia-color.html" class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-sky-600">
+          <span class="text-sm font-semibold text-sky-700">Lección 3</span>
+          <span class="mt-1 block text-lg font-bold text-slate-900">Tipografía, color, bordes y sombras</span>
+          <span class="mt-1 block text-slate-600">Texto, paleta, opacidad, esquinas y sombras</span>
+        </a>
+        <a href="04-flexbox.html" class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-sky-600">
+          <span class="text-sm font-semibold text-sky-700">Lección 4</span>
+          <span class="mt-1 block text-lg font-bold text-slate-900">Flexbox</span>
+          <span class="mt-1 block text-slate-600">Dirección, alineación, gap y reparto de espacio</span>
+        </a>
+        <a href="05-grid.html" class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-sky-600">
+          <span class="text-sm font-semibold text-sky-700">Lección 5</span>
+          <span class="mt-1 block text-lg font-bold text-slate-900">Grid y contenedores</span>
+          <span class="mt-1 block text-slate-600">Columnas, celdas que ocupan varias columnas y maquetas de página</span>
+        </a>
+        <a href="06-responsive.html" class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-sky-600">
+          <span class="text-sm font-semibold text-sky-700">Lección 6</span>
+          <span class="mt-1 block text-lg font-bold text-slate-900">Responsive</span>
+          <span class="mt-1 block text-slate-600">Mobile first y breakpoints</span>
+        </a>
+        <a href="07-estados-modo-oscuro.html" class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-sky-600">
+          <span class="text-sm font-semibold text-sky-700">Lección 7</span>
+          <span class="mt-1 block text-lg font-bold text-slate-900">Estados y modo oscuro</span>
+          <span class="mt-1 block text-slate-600">hover, focus, group, transiciones y dark</span>
+        </a>
+        <a href="08-tema-reutilizacion.html" class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md focus-visible:outline-2 focus-visible:outline-sky-600">
+          <span class="text-sm font-semibold text-sky-700">Lección 8</span>
+          <span class="mt-1 block text-lg font-bold text-slate-900">Tema propio y reutilización</span>
+          <span class="mt-1 block text-slate-600">@theme, @apply y @utility</span>
+        </a>
+      </nav>
+    </section>
+  </main>
+</body>
+</html>

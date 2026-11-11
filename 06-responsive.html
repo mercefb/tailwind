@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>6 · Responsive | Tailwind CSS en DIW</title>
+  <link rel="stylesheet" href="css/lecciones.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="js/demo.js" defer></script>
+</head>
+<body class="pagina">
+  <header class="cabecera">
+    <div class="cabecera-interior">
+      <a href="index.html">Tailwind CSS en DIW</a>
+      <span>Lección 6 de 8</span>
+    </div>
+  </header>
+
+  <main class="contenido">
+
+    <section>
+      <div class="texto">
+        <h1>6. Responsive</h1>
+        <p>Cualquier clase de Tailwind puede llevar delante un prefijo de breakpoint. La clase solo se aplica <strong>a partir de</strong> ese ancho de pantalla.</p>
+        <table>
+          <tr><th>Prefijo</th><th>Se aplica desde</th><th>Equivale a</th></tr>
+          <tr><td>(sin prefijo)</td><td>0 px: siempre</td><td>—</td></tr>
+          <tr><td><code>sm:</code></td><td>40 rem (640 px)</td><td><code>@media (width &gt;= 40rem)</code></td></tr>
+          <tr><td><code>md:</code></td><td>48 rem (768 px)</td><td><code>@media (width &gt;= 48rem)</code></td></tr>
+          <tr><td><code>lg:</code></td><td>64 rem (1024 px)</td><td><code>@media (width &gt;= 64rem)</code></td></tr>
+          <tr><td><code>xl:</code></td><td>80 rem (1280 px)</td><td><code>@media (width &gt;= 80rem)</code></td></tr>
+          <tr><td><code>2xl:</code></td><td>96 rem (1536 px)</td><td><code>@media (width &gt;= 96rem)</code></td></tr>
+        </table>
+        <p class="nota">Para ver los ejemplos de esta lección, cambia el ancho de la ventana o usa el modo responsive de las DevTools (<code>Ctrl + Mayús + M</code> en Chrome y Firefox).</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Mobile first</h2>
+        <p>Primero se escriben los estilos para móvil, sin prefijo. Después se añade lo que cambia en pantallas más grandes. Lee las clases de izquierda a derecha como una historia: «una columna; desde <code>sm</code>, dos; desde <code>lg</code>, cuatro».</p>
+        <p class="aviso"><strong>Error típico:</strong> pensar que <code>sm:</code> significa «en móvil». No: <code>sm:</code> significa «desde 640 px hacia arriba». Lo que quieres para móvil va sin prefijo.</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="rounded bg-sky-200 p-4">1</div>
+          <div class="rounded bg-sky-200 p-4">2</div>
+          <div class="rounded bg-sky-200 p-4">3</div>
+          <div class="rounded bg-sky-200 p-4">4</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Cambiar la dirección: de columna a fila</h2>
+        <p>Muy útil en secciones con imagen y texto: en móvil una debajo de otra, en escritorio una al lado de la otra.</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="flex flex-col items-center gap-6 md:flex-row">
+          <img src="https://picsum.photos/seed/oficina/600/400" alt="Equipo trabajando en una oficina" class="w-full rounded-lg md:w-1/2">
+          <div class="md:w-1/2">
+            <h2 class="text-2xl font-bold">Trabaja desde cualquier sitio</h2>
+            <p class="mt-2 text-slate-600">En móvil el texto queda debajo de la imagen. Desde 768 px se ponen una al lado de la otra.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Mostrar y ocultar</h2>
+        <p><code>hidden</code> oculta un elemento y <code>block</code> o <code>flex</code> lo vuelven a mostrar. Combinados con breakpoints, sirven para enseñar cosas distintas según la pantalla.</p>
+      </div>
+      <div class="demo" data-demo>
+        <p class="rounded bg-rose-100 p-3 md:hidden">Solo me ves en pantallas pequeñas (md:hidden).</p>
+        <p class="hidden rounded bg-emerald-100 p-3 md:block">Solo me ves desde 768 px (hidden md:block).</p>
+      </div>
+      <div class="texto">
+        <p>También existen prefijos <code>max-*</code> para «hasta» un ancho: <code>max-md:hidden</code> oculta hasta 768 px. Úsalos solo cuando resulte más claro que la forma mobile first.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Tamaños y espacios que cambian</h2>
+        <p>Cualquier utilidad admite el prefijo: tamaños de letra, padding, anchos…</p>
+      </div>
+      <div class="demo" data-demo>
+        <h2 class="text-2xl font-bold md:text-4xl lg:text-5xl">Titular que crece con la pantalla</h2>
+        <div class="mt-4 rounded bg-amber-100 p-4 md:p-8 lg:p-12">Padding de 16 px, 32 px desde md y 48 px desde lg</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Menú hamburguesa</h2>
+        <p>Tailwind no trae JavaScript, así que el botón que abre el menú se programa a mano. Son tres líneas: al pulsar el botón, se quita o se pone la clase <code>hidden</code> en la lista de enlaces. Desde <code>md</code>, el botón desaparece y los enlaces se ven siempre en fila.</p>
+        <p>Para verlo, estrecha la ventana por debajo de 768 px.</p>
+      </div>
+      <div class="demo" data-demo>
+        <nav class="rounded-lg border border-slate-200 bg-white px-4 py-3">
+          <div class="flex flex-wrap items-center justify-between">
+            <a href="#" class="font-bold text-indigo-700">Lumen</a>
+            <button id="boton-menu" type="button" class="rounded p-2 hover:bg-slate-100 md:hidden" aria-controls="menu-principal" aria-expanded="false">
+              <span class="sr-only">Abrir menú</span>
+              <svg class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+            <ul id="menu-principal" class="hidden w-full flex-col gap-2 pt-3 md:flex md:w-auto md:flex-row md:gap-6 md:pt-0">
+              <li><a href="#" class="block py-1 text-slate-700 hover:text-indigo-700">Inicio</a></li>
+              <li><a href="#" class="block py-1 text-slate-700 hover:text-indigo-700">Cursos</a></li>
+              <li><a href="#" class="block py-1 text-slate-700 hover:text-indigo-700">Precios</a></li>
+              <li><a href="#" class="block py-1 text-slate-700 hover:text-indigo-700">Contacto</a></li>
+            </ul>
+          </div>
+        </nav>
+        <script>
+          const botonMenu = document.querySelector('#boton-menu');
+          const menu = document.querySelector('#menu-principal');
+          botonMenu.addEventListener('click', () => {
+            const abierto = menu.classList.toggle('hidden') === false;
+            menu.classList.toggle('flex', abierto);
+            botonMenu.setAttribute('aria-expanded', abierto);
+          });
+        </script>
+      </div>
+      <div class="texto">
+        <p><code>sr-only</code> oculta un texto en pantalla pero lo deja para los lectores de pantalla: así el botón con solo un icono sigue teniendo nombre. <code>aria-expanded</code> indica si el menú está abierto.</p>
+      </div>
+    </section>
+
+    <section class="ejercicio">
+      <div class="texto">
+        <h2>Ejercicio: sección de cursos responsive</h2>
+        <p>Maqueta una sección con:</p>
+        <ul>
+          <li>Un título centrado que mide <code>text-2xl</code> en móvil y <code>text-4xl</code> desde <code>md</code>.</li>
+          <li>Una rejilla de 4 tarjetas de curso (imagen, título, precio): 1 columna en móvil, 2 desde <code>sm</code> y 4 desde <code>lg</code>.</li>
+          <li>Debajo, un aviso con texto y botón: en móvil el botón va debajo del texto y ocupa todo el ancho; desde <code>md</code>, el botón va a la derecha del texto con su ancho normal.</li>
+        </ul>
+      </div>
+      <details>
+        <summary>Ver solución</summary>
+        <div class="demo" data-demo>
+          <section>
+            <h2 class="text-center text-2xl font-bold md:text-4xl">Cursos destacados</h2>
+            <div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              <article class="overflow-hidden rounded-xl border border-slate-200 bg-white">
+                <img src="https://picsum.photos/seed/curso-html/600/400" alt="Código HTML en una pantalla" class="h-36 w-full object-cover">
+                <div class="p-4"><h3 class="font-semibold">HTML desde cero</h3><p class="mt-1 font-bold text-indigo-700">29 €</p></div>
+              </article>
+              <article class="overflow-hidden rounded-xl border border-slate-200 bg-white">
+                <img src="https://picsum.photos/seed/curso-css/600/400" alt="Paleta de colores sobre un escritorio" class="h-36 w-full object-cover">
+                <div class="p-4"><h3 class="font-semibold">CSS moderno</h3><p class="mt-1 font-bold text-indigo-700">39 €</p></div>
+              </article>
+              <article class="overflow-hidden rounded-xl border border-slate-200 bg-white">
+                <img src="https://picsum.photos/seed/curso-js/600/400" alt="Portátil con código JavaScript" class="h-36 w-full object-cover">
+                <div class="p-4"><h3 class="font-semibold">JavaScript práctico</h3><p class="mt-1 font-bold text-indigo-700">49 €</p></div>
+              </article>
+              <article class="overflow-hidden rounded-xl border border-slate-200 bg-white">
+                <img src="https://picsum.photos/seed/curso-ux/600/400" alt="Bocetos de una app en papel" class="h-36 w-full object-cover">
+                <div class="p-4"><h3 class="font-semibold">Diseño UX</h3><p class="mt-1 font-bold text-indigo-700">35 €</p></div>
+              </article>
+            </div>
+            <div class="mt-8 flex flex-col gap-4 rounded-xl bg-indigo-50 p-6 md:flex-row md:items-center md:justify-between">
+              <p class="text-indigo-900">Matricúlate antes del viernes y llévate un 20 % de descuento.</p>
+              <a href="#" class="rounded-lg bg-indigo-600 px-5 py-2 text-center font-semibold text-white hover:bg-indigo-700">Ver ofertas</a>
+            </div>
+          </section>
+        </div>
+      </details>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="pie-interior">
+      <a href="05-grid.html">← Lección 5: Grid</a>
+      <a href="07-estados-modo-oscuro.html">Lección 7: Estados y modo oscuro →</a>
+    </div>
+  </footer>
+</body>
+</html>

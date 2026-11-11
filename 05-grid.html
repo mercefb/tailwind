@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>5 · Grid y contenedores | Tailwind CSS en DIW</title>
+  <link rel="stylesheet" href="css/lecciones.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="js/demo.js" defer></script>
+</head>
+<body class="pagina">
+  <header class="cabecera">
+    <div class="cabecera-interior">
+      <a href="index.html">Tailwind CSS en DIW</a>
+      <span>Lección 5 de 8</span>
+    </div>
+  </header>
+
+  <main class="contenido">
+
+    <section>
+      <div class="texto">
+        <h1>5. Grid y contenedores</h1>
+        <p>Usa Grid cuando colocas elementos <strong>en filas y columnas a la vez</strong>: una rejilla de productos, una galería, la maqueta general de una página.</p>
+        <table>
+          <tr><th>Clase</th><th>CSS</th></tr>
+          <tr><td><code>grid</code></td><td><code>display: grid</code></td></tr>
+          <tr><td><code>grid-cols-3</code></td><td>Tres columnas del mismo ancho (de 1 a 12)</td></tr>
+          <tr><td><code>grid-rows-2</code></td><td>Dos filas del mismo alto</td></tr>
+          <tr><td><code>gap-4</code>, <code>gap-x-6</code>, <code>gap-y-2</code></td><td>Separación entre celdas</td></tr>
+          <tr><td><code>col-span-2</code>, <code>col-span-full</code></td><td>Un hijo ocupa 2 columnas, o todas</td></tr>
+          <tr><td><code>row-span-2</code></td><td>Un hijo ocupa 2 filas</td></tr>
+          <tr><td><code>col-start-2</code></td><td>Un hijo empieza en la columna 2</td></tr>
+          <tr><td><code>grid-cols-[200px_1fr]</code></td><td>Columnas a medida con valor arbitrario (el guion bajo es un espacio)</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Columnas iguales</h2>
+        <p>Con <code>grid-cols-*</code> en el padre, los hijos se colocan solos, de izquierda a derecha y saltando de fila cuando se llenan las columnas.</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="grid grid-cols-3 gap-4">
+          <div class="rounded bg-sky-200 p-4">1</div>
+          <div class="rounded bg-sky-200 p-4">2</div>
+          <div class="rounded bg-sky-200 p-4">3</div>
+          <div class="rounded bg-sky-200 p-4">4</div>
+          <div class="rounded bg-sky-200 p-4">5</div>
+          <div class="rounded bg-sky-200 p-4">6</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Celdas que ocupan varias columnas o filas</h2>
+      </div>
+      <div class="demo" data-demo>
+        <div class="grid grid-cols-4 gap-4">
+          <div class="col-span-2 row-span-2 rounded bg-violet-300 p-4">col-span-2 row-span-2</div>
+          <div class="rounded bg-violet-200 p-4">1</div>
+          <div class="rounded bg-violet-200 p-4">2</div>
+          <div class="col-span-2 rounded bg-violet-200 p-4">col-span-2</div>
+          <div class="col-span-full rounded bg-violet-100 p-4">col-span-full</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Comparación con la rejilla de Bootstrap</h2>
+        <p>Bootstrap divide la fila en 12 columnas y cada hijo dice cuántas ocupa. Con Tailwind se puede hacer igual con <code>grid-cols-12</code> y <code>col-span-*</code>, pero suele ser más sencillo decir directamente cuántas columnas quieres.</p>
+        <table>
+          <tr><th>Bootstrap</th><th>Tailwind</th></tr>
+          <tr><td><code>&lt;div class="row"&gt;</code> + tres <code>&lt;div class="col-4"&gt;</code></td><td><code>&lt;div class="grid grid-cols-3 gap-4"&gt;</code> + tres <code>&lt;div&gt;</code> sin clases</td></tr>
+          <tr><td><code>col-8</code> + <code>col-4</code></td><td><code>grid-cols-3</code> con un hijo <code>col-span-2</code>, o <code>grid-cols-12</code> con <code>col-span-8</code> y <code>col-span-4</code></td></tr>
+          <tr><td><code>g-3</code></td><td><code>gap-4</code></td></tr>
+          <tr><td><code>.container</code></td><td><code>container mx-auto px-4</code></td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Contenedores</h2>
+        <p>La clase <code>container</code> fija un ancho máximo que cambia con el tamaño de pantalla, igual que en Bootstrap. A diferencia de Bootstrap, en Tailwind <strong>no se centra sola ni tiene padding</strong>: hay que añadir <code>mx-auto</code> y <code>px-4</code>.</p>
+        <p>Muchas veces es más práctico un ancho máximo fijo, como hiciste en la lección 2: <code>mx-auto max-w-5xl px-4</code>.</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="container mx-auto rounded bg-amber-100 px-4 py-6">
+          Contenido dentro de <strong>container mx-auto px-4</strong>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Maqueta de página con columnas a medida</h2>
+        <p>Una barra lateral de ancho fijo y el contenido ocupando el resto. Con valores arbitrarios se escribe tal cual se haría en CSS: <code>grid-template-columns: 200px 1fr</code>.</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="grid grid-cols-[200px_1fr] gap-4">
+          <aside class="rounded bg-slate-200 p-4">Barra lateral (200 px)</aside>
+          <main class="rounded bg-slate-100 p-4">Contenido (1fr: el resto del espacio)</main>
+        </div>
+      </div>
+    </section>
+
+    <section class="ejercicio">
+      <div class="texto">
+        <h2>Ejercicio: maqueta de un panel de administración</h2>
+        <p>Maqueta con Grid la estructura de un panel, ocupando al menos 400 px de alto:</p>
+        <ul>
+          <li>Una cabecera que ocupa todo el ancho.</li>
+          <li>Debajo, a la izquierda, una barra lateral de 220 px con cuatro enlaces en columna.</li>
+          <li>A la derecha, el contenido: un título y una rejilla de 3 tarjetas con un número grande y una etiqueta (por ejemplo «128 pedidos»).</li>
+          <li>Un pie que ocupa todo el ancho.</li>
+        </ul>
+        <p>Pista: <code>grid-cols-[220px_1fr]</code> en el contenedor, y <code>col-span-full</code> en la cabecera y el pie. Para que el contenido crezca en alto, usa <code>grid-rows-[auto_1fr_auto]</code>.</p>
+      </div>
+      <details>
+        <summary>Ver solución</summary>
+        <div class="demo" data-demo>
+          <div class="grid min-h-[400px] grid-cols-[220px_1fr] grid-rows-[auto_1fr_auto] gap-4">
+            <header class="col-span-full rounded-lg bg-slate-800 p-4 font-semibold text-white">Panel de la tienda</header>
+            <nav class="flex flex-col gap-2 rounded-lg bg-slate-100 p-4">
+              <a href="#" class="rounded px-2 py-1 font-semibold text-slate-900 bg-white">Resumen</a>
+              <a href="#" class="rounded px-2 py-1 text-slate-600 hover:bg-white">Pedidos</a>
+              <a href="#" class="rounded px-2 py-1 text-slate-600 hover:bg-white">Productos</a>
+              <a href="#" class="rounded px-2 py-1 text-slate-600 hover:bg-white">Clientes</a>
+            </nav>
+            <main class="rounded-lg border border-slate-200 p-4">
+              <h3 class="text-xl font-bold">Resumen de hoy</h3>
+              <div class="mt-4 grid grid-cols-3 gap-4">
+                <div class="rounded-lg bg-sky-50 p-4"><p class="text-3xl font-bold text-sky-700">128</p><p class="text-slate-600">pedidos</p></div>
+                <div class="rounded-lg bg-emerald-50 p-4"><p class="text-3xl font-bold text-emerald-700">3.540 €</p><p class="text-slate-600">ventas</p></div>
+                <div class="rounded-lg bg-amber-50 p-4"><p class="text-3xl font-bold text-amber-700">12</p><p class="text-slate-600">devoluciones</p></div>
+              </div>
+            </main>
+            <footer class="col-span-full rounded-lg bg-slate-100 p-4 text-sm text-slate-500">© 2026 Tienda de ejemplo</footer>
+          </div>
+        </div>
+      </details>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="pie-interior">
+      <a href="04-flexbox.html">← Lección 4: Flexbox</a>
+      <a href="06-responsive.html">Lección 6: Responsive →</a>
+    </div>
+  </footer>
+</body>
+</html>

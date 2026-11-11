@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>8 · Tema propio y reutilización | Tailwind CSS en DIW</title>
+  <link rel="stylesheet" href="css/lecciones.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- Toda la configuración de esta lección. En un proyecto con Vite, esto mismo
+       iría en src/style.css, debajo de @import "tailwindcss"; -->
+  <style type="text/tailwindcss">
+    @theme {
+      --color-marca-50: #f0f7f3;
+      --color-marca-100: #d9ede1;
+      --color-marca-500: #2f7d4f;
+      --color-marca-600: #25643f;
+      --color-marca-700: #1c4b2f;
+      --font-display: Georgia, "Times New Roman", serif;
+      --radius-tarjeta: 1.25rem;
+    }
+
+    @layer components {
+      .btn-marca {
+        @apply inline-block rounded-lg bg-marca-500 px-4 py-2 font-semibold text-white hover:bg-marca-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-500;
+      }
+    }
+
+    @utility marco-punteado {
+      outline: 2px dashed currentColor;
+      outline-offset: 4px;
+    }
+  </style>
+  <script src="js/demo.js" defer></script>
+</head>
+<body class="pagina">
+  <header class="cabecera">
+    <div class="cabecera-interior">
+      <a href="index.html">Tailwind CSS en DIW</a>
+      <span>Lección 8 de 8</span>
+    </div>
+  </header>
+
+  <main class="contenido">
+
+    <section>
+      <div class="texto">
+        <h1>8. Tema propio y reutilización</h1>
+        <p>Hasta ahora has usado los colores y tamaños que trae Tailwind. En un proyecto real querrás los colores y la tipografía de tu marca, y no repetir veinte clases en cada botón. Esta lección resuelve las dos cosas.</p>
+        <p class="nota">Con el CDN, la configuración se escribe en un <code>&lt;style type="text/tailwindcss"&gt;</code> dentro del <code>head</code>. Abre el código fuente de esta página para verla entera. En un proyecto con Vite, lo mismo va en tu archivo CSS, debajo de <code>@import "tailwindcss";</code>.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Tu tema con <code>@theme</code></h2>
+        <p>Dentro de <code>@theme</code> se declaran variables CSS con un prefijo concreto. Según el prefijo, Tailwind crea las clases correspondientes:</p>
+      </div>
+      <pre class="codigo"><code>@theme {
+  --color-marca-500: #2f7d4f;    /* crea bg-marca-500, text-marca-500, border-marca-500… */
+  --color-marca-600: #25643f;
+  --font-display: Georgia, serif; /* crea font-display */
+  --radius-tarjeta: 1.25rem;      /* crea rounded-tarjeta */
+}</code></pre>
+      <div class="texto">
+        <table>
+          <tr><th>Prefijo de la variable</th><th>Clases que crea</th></tr>
+          <tr><td><code>--color-*</code></td><td><code>bg-*</code>, <code>text-*</code>, <code>border-*</code>, <code>ring-*</code>, <code>outline-*</code>…</td></tr>
+          <tr><td><code>--font-*</code></td><td><code>font-*</code> (familia tipográfica)</td></tr>
+          <tr><td><code>--text-*</code></td><td><code>text-*</code> (tamaño de letra)</td></tr>
+          <tr><td><code>--radius-*</code></td><td><code>rounded-*</code></td></tr>
+          <tr><td><code>--shadow-*</code></td><td><code>shadow-*</code></td></tr>
+          <tr><td><code>--breakpoint-*</code></td><td>Prefijos responsive nuevos, como <code>3xl:</code></td></tr>
+        </table>
+        <p>Los valores de Tailwind siguen disponibles: solo añades los tuyos. Y como son variables CSS, también puedes usarlos en CSS normal: <code>color: var(--color-marca-500)</code>.</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="max-w-sm rounded-tarjeta bg-marca-50 p-6">
+          <h3 class="font-display text-2xl text-marca-700">Huerto Vivo</h3>
+          <p class="mt-2 text-marca-600">Este texto usa los colores, la fuente y el radio definidos en el tema.</p>
+          <span class="mt-4 inline-block rounded-full bg-marca-100 px-3 py-1 text-sm font-semibold text-marca-700">Ecológico</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>No repetir clases</h2>
+        <p>Si tienes diez botones iguales, tendrás diez veces la misma lista de clases. Hay tres soluciones, de más a menos recomendada:</p>
+        <ol>
+          <li><strong>Un componente o una plantilla.</strong> En React, Vue, Astro o PHP, el botón se escribe una vez como componente y se reutiliza. Es lo que se hace en proyectos reales, y lo verás en otros módulos.</li>
+          <li><strong>Un bucle.</strong> Si los elementos salen de una lista de datos (productos, noticias), el HTML se genera con un bucle y las clases se escriben una sola vez.</li>
+          <li><strong><code>@apply</code></strong>, cuando trabajas con HTML estático, como en estas prácticas. Agrupa varias utilidades bajo una clase tuya.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Agrupar utilidades con <code>@apply</code></h2>
+        <p>Se escribe dentro de <code>@layer components</code>, para que las utilidades sueltas puedan sobrescribirlo. En el ejemplo, el segundo botón usa <code>btn-marca</code> y además <code>w-full</code>, y el tercero cambia el color de fondo con una utilidad.</p>
+      </div>
+      <pre class="codigo"><code>@layer components {
+  .btn-marca {
+    @apply inline-block rounded-lg bg-marca-500 px-4 py-2 font-semibold text-white
+           hover:bg-marca-600 focus-visible:outline-2 focus-visible:outline-offset-2
+           focus-visible:outline-marca-500;
+  }
+}</code></pre>
+      <div class="demo" data-demo>
+        <div class="max-w-sm space-y-3">
+          <a href="#" class="btn-marca">Comprar</a>
+          <a href="#" class="btn-marca w-full text-center">Comprar (ancho completo)</a>
+          <a href="#" class="btn-marca bg-marca-700">Comprar (más oscuro)</a>
+        </div>
+      </div>
+      <div class="texto">
+        <p class="aviso">No conviertas todo en clases con <code>@apply</code>: acabarías escribiendo CSS tradicional con más pasos. Úsalo para piezas que se repiten mucho, como botones o etiquetas.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Utilidades propias con <code>@utility</code></h2>
+        <p>Si echas en falta una utilidad, puedes crearla. A diferencia de una clase normal, una utilidad creada con <code>@utility</code> admite todos los prefijos: <code>hover:</code>, <code>md:</code>, <code>dark:</code>…</p>
+      </div>
+      <pre class="codigo"><code>@utility marco-punteado {
+  outline: 2px dashed currentColor;
+  outline-offset: 4px;
+}</code></pre>
+      <div class="demo" data-demo>
+        <p class="inline-block rounded p-3 text-marca-600 hover:marco-punteado">Pasa el ratón: hover:marco-punteado</p>
+      </div>
+    </section>
+
+    <section class="ejercicio">
+      <div class="texto">
+        <h2>Ejercicio: tema de marca</h2>
+        <p>Inventa una marca (una librería, un gimnasio, una app…) y:</p>
+        <ol>
+          <li>Define en <code>@theme</code> un color de marca con al menos tres tonos (claro, normal y oscuro) y una fuente para títulos.</li>
+          <li>Crea con <code>@apply</code> dos clases: <code>btn-principal</code> y <code>btn-secundario</code> (este último solo con borde).</li>
+          <li>Maqueta un hero con un título en la fuente de marca, un texto y los dos botones.</li>
+        </ol>
+        <p>Comprueba que puedes cambiar el color de toda la página tocando solo el <code>@theme</code>.</p>
+      </div>
+      <details>
+        <summary>Ver solución</summary>
+        <div class="texto">
+          <p>Configuración (en el <code>head</code> con el CDN, o en <code>src/style.css</code> con Vite):</p>
+        </div>
+        <pre class="codigo"><code>@theme {
+  --color-tinta-50: #f5f3ff;
+  --color-tinta-500: #6d28d9;
+  --color-tinta-700: #4c1d95;
+  --font-titulo: Georgia, serif;
+}
+
+@layer components {
+  .btn-principal {
+    @apply rounded-lg bg-tinta-500 px-5 py-2.5 font-semibold text-white hover:bg-tinta-700
+           focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tinta-500;
+  }
+  .btn-secundario {
+    @apply rounded-lg border-2 border-tinta-500 px-5 py-2 font-semibold text-tinta-700 hover:bg-tinta-50
+           focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-tinta-500;
+  }
+}</code></pre>
+        <div class="texto">
+          <p>HTML del hero (en esta página se ve con los colores <code>marca</code> ya definidos arriba):</p>
+        </div>
+        <div class="demo" data-demo>
+          <section class="rounded-2xl bg-marca-50 px-6 py-12 text-center">
+            <h2 class="font-display text-4xl text-marca-700">Librería La Tinta</h2>
+            <p class="mx-auto mt-4 max-w-md text-slate-700">Libros de segunda mano, café y clubes de lectura en el centro de Granada.</p>
+            <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+              <a href="#" class="btn-marca">Ver catálogo</a>
+              <a href="#" class="rounded-lg border-2 border-marca-500 px-4 py-1.5 font-semibold text-marca-700 hover:bg-marca-100">Clubes de lectura</a>
+            </div>
+          </section>
+        </div>
+      </details>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="pie-interior">
+      <a href="07-estados-modo-oscuro.html">← Lección 7: Estados y modo oscuro</a>
+      <a href="proyecto-vite/README.md">Siguiente paso: proyecto con Vite →</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>3 · Tipografía, color, bordes y sombras | Tailwind CSS en DIW</title>
+  <link rel="stylesheet" href="css/lecciones.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="js/demo.js" defer></script>
+</head>
+<body class="pagina">
+  <header class="cabecera">
+    <div class="cabecera-interior">
+      <a href="index.html">Tailwind CSS en DIW</a>
+      <span>Lección 3 de 8</span>
+    </div>
+  </header>
+
+  <main class="contenido">
+
+    <section>
+      <div class="texto">
+        <h1>3. Tipografía, color, bordes y sombras</h1>
+        <p>Una advertencia antes de empezar: Tailwind quita todos los estilos por defecto del navegador. Un <code>&lt;h1&gt;</code> se ve igual que un párrafo y las listas no tienen viñetas. Es a propósito: así nada aparece con un estilo que no has elegido tú. Los tamaños se ponen con clases.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Tamaño, peso y estilo del texto</h2>
+        <table>
+          <tr><th>Clases</th><th>Para qué</th></tr>
+          <tr><td><code>text-xs</code>, <code>text-sm</code>, <code>text-base</code>, <code>text-lg</code>, <code>text-xl</code>, <code>text-2xl</code> … <code>text-9xl</code></td><td>Tamaño de letra. <code>text-base</code> es el normal (1 rem)</td></tr>
+          <tr><td><code>font-light</code>, <code>font-normal</code>, <code>font-medium</code>, <code>font-semibold</code>, <code>font-bold</code>, <code>font-black</code></td><td>Grosor (<code>font-weight</code>) de 300 a 900</td></tr>
+          <tr><td><code>italic</code>, <code>underline</code>, <code>line-through</code>, <code>uppercase</code></td><td>Estilo y transformación</td></tr>
+          <tr><td><code>text-left</code>, <code>text-center</code>, <code>text-right</code></td><td>Alineación</td></tr>
+          <tr><td><code>leading-tight</code>, <code>leading-relaxed</code></td><td>Interlineado</td></tr>
+          <tr><td><code>tracking-wide</code>, <code>tracking-tight</code></td><td>Espacio entre letras</td></tr>
+          <tr><td><code>font-sans</code>, <code>font-serif</code>, <code>font-mono</code></td><td>Familia tipográfica</td></tr>
+          <tr><td><code>truncate</code></td><td>Corta el texto con «…» si no cabe en una línea</td></tr>
+        </table>
+      </div>
+      <div class="demo" data-demo>
+        <h2 class="text-3xl font-bold tracking-tight">Un titular de sección</h2>
+        <p class="mt-2 text-lg text-slate-600">Un subtítulo más grande que el texto normal.</p>
+        <p class="mt-4 leading-relaxed">Un párrafo con <span class="font-semibold">una parte en seminegrita</span>, <span class="italic">otra en cursiva</span> y <span class="underline">otra subrayada</span>.</p>
+        <p class="mt-4 text-xs font-semibold tracking-widest text-slate-500 uppercase">Etiqueta pequeña en mayúsculas</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Colores</h2>
+        <p>Cada color tiene once tonos, de <code>50</code> (casi blanco) a <code>950</code> (casi negro). El nombre del color va después de la propiedad:</p>
+        <ul>
+          <li><code>text-emerald-700</code>: color del texto.</li>
+          <li><code>bg-emerald-100</code>: color de fondo.</li>
+          <li><code>border-emerald-300</code>: color del borde.</li>
+        </ul>
+        <p>Colores disponibles: <code>slate</code>, <code>gray</code>, <code>zinc</code>, <code>neutral</code>, <code>stone</code> (grises), <code>red</code>, <code>orange</code>, <code>amber</code>, <code>yellow</code>, <code>lime</code>, <code>green</code>, <code>emerald</code>, <code>teal</code>, <code>cyan</code>, <code>sky</code>, <code>blue</code>, <code>indigo</code>, <code>violet</code>, <code>purple</code>, <code>fuchsia</code>, <code>pink</code> y <code>rose</code>. Además están <code>white</code>, <code>black</code> y <code>transparent</code>.</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="flex overflow-hidden rounded-lg text-xs">
+          <div class="flex-1 bg-sky-50 p-3">50</div>
+          <div class="flex-1 bg-sky-100 p-3">100</div>
+          <div class="flex-1 bg-sky-200 p-3">200</div>
+          <div class="flex-1 bg-sky-300 p-3">300</div>
+          <div class="flex-1 bg-sky-400 p-3">400</div>
+          <div class="flex-1 bg-sky-500 p-3 text-white">500</div>
+          <div class="flex-1 bg-sky-600 p-3 text-white">600</div>
+          <div class="flex-1 bg-sky-700 p-3 text-white">700</div>
+          <div class="flex-1 bg-sky-800 p-3 text-white">800</div>
+          <div class="flex-1 bg-sky-900 p-3 text-white">900</div>
+          <div class="flex-1 bg-sky-950 p-3 text-white">950</div>
+        </div>
+      </div>
+      <div class="texto">
+        <p class="nota"><strong>Regla para el contraste:</strong> texto oscuro (700-950) sobre fondos claros (50-200), y texto blanco sobre fondos de 600 hacia arriba. Con el 500 depende del color: compruébalo en las DevTools.</p>
+        <h3>Opacidad</h3>
+        <p>Una barra y un número después del color indican la opacidad en porcentaje: <code>bg-black/50</code> es negro al 50 %.</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="relative h-40 overflow-hidden rounded-lg">
+          <img src="https://picsum.photos/seed/montana/800/400" alt="Paisaje de montaña" class="h-full w-full object-cover">
+          <p class="absolute inset-x-0 bottom-0 bg-black/60 p-4 text-white">Texto legible sobre una foto gracias a bg-black/60</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Bordes, esquinas y sombras</h2>
+        <table>
+          <tr><th>Clases</th><th>Para qué</th></tr>
+          <tr><td><code>border</code>, <code>border-2</code>, <code>border-4</code></td><td>Borde en los cuatro lados de 1, 2 o 4 px</td></tr>
+          <tr><td><code>border-t</code>, <code>border-b-2</code>, <code>border-l-4</code></td><td>Borde en un solo lado</td></tr>
+          <tr><td><code>border-slate-200</code></td><td>Color del borde</td></tr>
+          <tr><td><code>border-dashed</code>, <code>border-dotted</code></td><td>Estilo del borde</td></tr>
+          <tr><td><code>rounded-sm</code>, <code>rounded</code>, <code>rounded-lg</code>, <code>rounded-2xl</code>, <code>rounded-full</code></td><td>Esquinas redondeadas. <code>rounded-full</code> hace círculos</td></tr>
+          <tr><td><code>shadow-sm</code>, <code>shadow</code>, <code>shadow-md</code>, <code>shadow-lg</code>, <code>shadow-xl</code></td><td>Sombra, de suave a marcada</td></tr>
+        </table>
+        <p class="aviso">En Tailwind v4, <code>border</code> sin color usa el color del texto (<code>currentColor</code>). Añade siempre un color: <code>border border-slate-200</code>.</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="flex flex-wrap gap-6">
+          <div class="rounded border border-slate-300 p-4">border</div>
+          <div class="rounded-lg border-2 border-dashed border-violet-400 p-4">border-2 dashed</div>
+          <div class="rounded-xl p-4 shadow-md">shadow-md</div>
+          <div class="rounded-2xl p-4 shadow-xl">shadow-xl</div>
+          <div class="flex size-16 items-center justify-center rounded-full bg-amber-300 font-bold">AB</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ejercicio">
+      <div class="texto">
+        <h2>Ejercicio: tarjeta de perfil</h2>
+        <p>Es el equivalente a la lección de tipografía y colores de Bootstrap. Maqueta una tarjeta de perfil centrada en la página, con:</p>
+        <ul>
+          <li>Fondo blanco, esquinas redondeadas, borde gris claro y una sombra suave.</li>
+          <li>Una foto redonda de 96 px arriba y centrada.</li>
+          <li>El nombre grande y en negrita, el cargo en gris debajo y una etiqueta pequeña de color con la ciudad.</li>
+          <li>Un párrafo corto de presentación.</li>
+          <li>Dos botones: uno con fondo de color y otro solo con borde.</li>
+        </ul>
+        <p>Pista: para centrar la foto, ponle <code>mx-auto</code>. Para poner los botones en la misma línea puedes usar <code>flex gap-3</code> en su contenedor (lo verás en la lección 4).</p>
+      </div>
+      <details>
+        <summary>Ver solución</summary>
+        <div class="demo" data-demo>
+          <article class="mx-auto max-w-sm rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+            <img src="https://picsum.photos/seed/perfil-lucia/200/200" alt="Foto de Lucía Romero" class="mx-auto size-24 rounded-full object-cover">
+            <h3 class="mt-4 text-xl font-bold text-slate-900">Lucía Romero</h3>
+            <p class="text-slate-500">Diseñadora de interfaces</p>
+            <span class="mt-2 inline-block rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-800">Sevilla</span>
+            <p class="mt-4 leading-relaxed text-slate-600">Diseño apps que se entienden a la primera. Me encantan los sistemas de diseño y la accesibilidad.</p>
+            <div class="mt-6 flex justify-center gap-3">
+              <a href="#" class="rounded-lg bg-emerald-600 px-4 py-2 font-semibold text-white hover:bg-emerald-700">Contactar</a>
+              <a href="#" class="rounded-lg border border-emerald-600 px-4 py-2 font-semibold text-emerald-700 hover:bg-emerald-50">Ver portfolio</a>
+            </div>
+          </article>
+        </div>
+      </details>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="pie-interior">
+      <a href="02-espaciado-tamanos.html">← Lección 2: Espaciado y tamaños</a>
+      <a href="04-flexbox.html">Lección 4: Flexbox →</a>
+    </div>
+  </footer>
+</body>
+</html>

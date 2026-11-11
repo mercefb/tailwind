@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>7 · Estados y modo oscuro | Tailwind CSS en DIW</title>
+  <link rel="stylesheet" href="css/lecciones.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- Con el CDN, la configuración de Tailwind va en un <style type="text/tailwindcss">.
+       Esta línea hace que dark: funcione con una clase .dark en vez de con la preferencia del sistema. -->
+  <style type="text/tailwindcss">
+    @custom-variant dark (&:where(.dark, .dark *));
+  </style>
+  <script src="js/demo.js" defer></script>
+</head>
+<body class="pagina">
+  <header class="cabecera">
+    <div class="cabecera-interior">
+      <a href="index.html">Tailwind CSS en DIW</a>
+      <span>Lección 7 de 8</span>
+    </div>
+  </header>
+
+  <main class="contenido">
+
+    <section>
+      <div class="texto">
+        <h1>7. Estados y modo oscuro</h1>
+        <p>Igual que los breakpoints, los estados se escriben como un prefijo delante de la clase. La clase solo se aplica cuando se cumple la condición.</p>
+        <table>
+          <tr><th>Prefijo</th><th>Cuándo se aplica</th><th>Equivale a</th></tr>
+          <tr><td><code>hover:</code></td><td>Al pasar el ratón</td><td><code>:hover</code></td></tr>
+          <tr><td><code>focus:</code></td><td>Cuando el elemento tiene el foco</td><td><code>:focus</code></td></tr>
+          <tr><td><code>focus-visible:</code></td><td>Foco al navegar con teclado (no al hacer clic)</td><td><code>:focus-visible</code></td></tr>
+          <tr><td><code>active:</code></td><td>Mientras se pulsa</td><td><code>:active</code></td></tr>
+          <tr><td><code>disabled:</code></td><td>Si el elemento está desactivado</td><td><code>:disabled</code></td></tr>
+          <tr><td><code>first:</code>, <code>last:</code>, <code>odd:</code>, <code>even:</code></td><td>Según su posición entre sus hermanos</td><td><code>:first-child</code>, <code>:nth-child(odd)</code>…</td></tr>
+          <tr><td><code>group-hover:</code></td><td>Al pasar el ratón por un elemento padre con la clase <code>group</code></td><td><code>.group:hover &amp;</code></td></tr>
+          <tr><td><code>dark:</code></td><td>En modo oscuro</td><td>Ver el final de la lección</td></tr>
+        </table>
+        <p>Los prefijos se pueden combinar: <code>md:hover:underline</code> subraya al pasar el ratón, pero solo desde 768 px.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Botones con todos sus estados</h2>
+        <p>Pasa el ratón, haz clic y navega con el tabulador para ver cada estado. El anillo de foco (<code>focus-visible:outline-*</code>) es imprescindible para la accesibilidad: sin él, quien usa el teclado no sabe dónde está.</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="flex flex-wrap gap-3">
+          <button type="button" class="rounded-lg bg-indigo-600 px-4 py-2 font-semibold text-white hover:bg-indigo-700 active:bg-indigo-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Guardar</button>
+          <button type="button" class="rounded-lg border border-slate-300 px-4 py-2 font-semibold text-slate-700 hover:bg-slate-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Cancelar</button>
+          <button type="button" disabled class="rounded-lg bg-indigo-600 px-4 py-2 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-50">Desactivado</button>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Campos de formulario</h2>
+        <p>Tailwind quita los estilos del navegador también a los formularios, así que el borde y el foco se ponen con clases.</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="max-w-sm">
+          <label for="correo" class="block text-sm font-medium text-slate-700">Correo electrónico</label>
+          <input id="correo" type="email" placeholder="nombre@ejemplo.com" class="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 focus:outline-none">
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Transiciones</h2>
+        <p>Por defecto el cambio de estado es instantáneo. Con <code>transition</code> se anima, y con <code>duration-*</code> se ajusta la duración en milisegundos.</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="flex flex-wrap gap-4">
+          <div class="rounded-xl bg-white p-6 shadow transition duration-300 hover:-translate-y-1 hover:shadow-lg">Se eleva al pasar el ratón</div>
+          <div class="rounded-xl bg-sky-500 p-6 text-white transition hover:scale-105">Crece un 5 %</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Estados del padre: <code>group</code></h2>
+        <p>A veces quieres que un hijo cambie cuando pasas el ratón por el padre. Marca el padre con <code>group</code> y usa <code>group-hover:</code> en los hijos.</p>
+      </div>
+      <div class="demo" data-demo>
+        <a href="#" class="group block max-w-xs overflow-hidden rounded-xl border border-slate-200 bg-white">
+          <div class="overflow-hidden">
+            <img src="https://picsum.photos/seed/playa/600/400" alt="Playa con agua turquesa" class="h-40 w-full object-cover transition duration-300 group-hover:scale-110">
+          </div>
+          <div class="p-4">
+            <h3 class="font-semibold group-hover:text-sky-700">Viaje a Menorca</h3>
+            <p class="text-slate-600">Pasa el ratón por la tarjeta: la imagen se amplía y el título cambia de color.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Según la posición: tablas con filas alternas</h2>
+      </div>
+      <div class="demo" data-demo>
+        <table class="w-full text-left text-sm">
+          <thead class="bg-slate-800 text-white">
+            <tr><th class="p-2">Alumno</th><th class="p-2">Nota</th></tr>
+          </thead>
+          <tbody>
+            <tr class="odd:bg-white even:bg-slate-100"><td class="p-2">Ana</td><td class="p-2">8,5</td></tr>
+            <tr class="odd:bg-white even:bg-slate-100"><td class="p-2">Bruno</td><td class="p-2">7</td></tr>
+            <tr class="odd:bg-white even:bg-slate-100"><td class="p-2">Carla</td><td class="p-2">9,2</td></tr>
+            <tr class="odd:bg-white even:bg-slate-100"><td class="p-2">David</td><td class="p-2">6,8</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Modo oscuro</h2>
+        <p>El prefijo <code>dark:</code> aplica una clase solo en modo oscuro: <code>bg-white dark:bg-slate-900</code>. Por defecto, Tailwind activa el modo oscuro cuando el sistema operativo del usuario está en oscuro.</p>
+        <p>Si quieres un botón para cambiar de tema, hay que decirle a Tailwind que el modo oscuro depende de una clase <code>.dark</code>. Con el CDN se hace así, en el <code>head</code>:</p>
+      </div>
+      <pre class="codigo"><code>&lt;style type="text/tailwindcss"&gt;
+  @custom-variant dark (&amp;:where(.dark, .dark *));
+&lt;/style&gt;</code></pre>
+      <div class="texto">
+        <p>A partir de ahí, todo lo que esté dentro de un elemento con la clase <code>dark</code> usa sus clases <code>dark:</code>. Normalmente la clase se pone en <code>&lt;html&gt;</code> para que afecte a toda la página. En este ejemplo se pone en la caja para que solo cambie el ejemplo:</p>
+      </div>
+      <div class="demo" data-demo>
+        <div id="caja-tema" class="rounded-xl bg-white p-6 text-slate-800 ring-1 ring-slate-200 dark:bg-slate-900 dark:text-slate-100 dark:ring-slate-700">
+          <div class="flex items-center justify-between gap-4">
+            <h3 class="text-lg font-bold">Ajustes de la cuenta</h3>
+            <button id="boton-tema" type="button" class="rounded-lg bg-slate-100 px-3 py-1 text-sm font-semibold text-slate-700 hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-100 dark:hover:bg-slate-600">Cambiar tema</button>
+          </div>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">El fondo, el texto y el borde cambian con el tema.</p>
+        </div>
+        <script>
+          document.querySelector('#boton-tema').addEventListener('click', () => {
+            document.querySelector('#caja-tema').classList.toggle('dark');
+          });
+        </script>
+      </div>
+      <div class="texto">
+        <p class="nota">Para la página entera, el script sería <code>document.documentElement.classList.toggle('dark')</code>. En el proyecto con Vite, la línea <code>@custom-variant</code> va en el archivo CSS, debajo de <code>@import "tailwindcss";</code>.</p>
+      </div>
+    </section>
+
+    <section class="ejercicio">
+      <div class="texto">
+        <h2>Ejercicio: tarjeta de plan con hover y modo oscuro</h2>
+        <p>Maqueta la tarjeta de un plan de precios con:</p>
+        <ul>
+          <li>Nombre del plan, precio grande, una lista de tres ventajas y un botón «Elegir plan».</li>
+          <li>Al pasar el ratón por la tarjeta: se eleva un poco, la sombra crece y el borde cambia de color. Con transición.</li>
+          <li>El botón con hover, active y anillo de foco visible.</li>
+          <li>Colores para modo oscuro en el fondo, los textos y el borde, y un botón que cambie entre claro y oscuro.</li>
+        </ul>
+      </div>
+      <details>
+        <summary>Ver solución</summary>
+        <div class="demo" data-demo>
+          <div id="tema-plan" class="rounded-2xl bg-slate-100 p-6 dark:bg-slate-950">
+            <button id="boton-tema-plan" type="button" class="mb-4 rounded-lg bg-white px-3 py-1 text-sm font-semibold text-slate-700 shadow-sm dark:bg-slate-800 dark:text-slate-100">Cambiar tema</button>
+            <article class="group max-w-xs rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-indigo-400 hover:shadow-xl dark:border-slate-700 dark:bg-slate-900">
+              <h3 class="font-semibold text-indigo-600 dark:text-indigo-400">Plan Pro</h3>
+              <p class="mt-2 text-4xl font-bold text-slate-900 dark:text-white">12 € <span class="text-base font-normal text-slate-500 dark:text-slate-400">/ mes</span></p>
+              <ul class="mt-4 space-y-2 text-slate-600 dark:text-slate-300">
+                <li>✓ Proyectos ilimitados</li>
+                <li>✓ 50 GB de almacenamiento</li>
+                <li>✓ Soporte prioritario</li>
+              </ul>
+              <button type="button" class="mt-6 w-full rounded-lg bg-indigo-600 px-4 py-2 font-semibold text-white hover:bg-indigo-700 active:bg-indigo-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Elegir plan</button>
+            </article>
+          </div>
+          <script>
+            document.querySelector('#boton-tema-plan').addEventListener('click', () => {
+              document.querySelector('#tema-plan').classList.toggle('dark');
+            });
+          </script>
+        </div>
+      </details>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="pie-interior">
+      <a href="06-responsive.html">← Lección 6: Responsive</a>
+      <a href="08-tema-reutilizacion.html">Lección 8: Tema propio y reutilización →</a>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>2 · Espaciado y tamaños | Tailwind CSS en DIW</title>
+  <link rel="stylesheet" href="css/lecciones.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="js/demo.js" defer></script>
+</head>
+<body class="pagina">
+  <header class="cabecera">
+    <div class="cabecera-interior">
+      <a href="index.html">Tailwind CSS en DIW</a>
+      <span>Lección 2 de 8</span>
+    </div>
+  </header>
+
+  <main class="contenido">
+
+    <section>
+      <div class="texto">
+        <h1>2. Espaciado y tamaños</h1>
+        <p>Tailwind no usa píxeles sueltos para los espacios: usa una <strong>escala</strong>. Cada unidad vale <code>0,25rem</code> (4 px con el tamaño de letra por defecto). Así, <code>p-4</code> es <code>padding: 1rem</code> y <code>m-8</code> es <code>margin: 2rem</code>.</p>
+        <p>Usar siempre la misma escala hace que todos los espacios de la página encajen entre sí.</p>
+        <table>
+          <tr><th>Número</th><th>Valor</th><th>Píxeles aprox.</th></tr>
+          <tr><td><code>0</code></td><td>0</td><td>0</td></tr>
+          <tr><td><code>1</code></td><td>0,25 rem</td><td>4 px</td></tr>
+          <tr><td><code>2</code></td><td>0,5 rem</td><td>8 px</td></tr>
+          <tr><td><code>4</code></td><td>1 rem</td><td>16 px</td></tr>
+          <tr><td><code>6</code></td><td>1,5 rem</td><td>24 px</td></tr>
+          <tr><td><code>8</code></td><td>2 rem</td><td>32 px</td></tr>
+          <tr><td><code>12</code></td><td>3 rem</td><td>48 px</td></tr>
+          <tr><td><code>16</code></td><td>4 rem</td><td>64 px</td></tr>
+        </table>
+        <p>No hace falta memorizarla: número × 4 = píxeles.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Padding y margin</h2>
+        <p>La letra indica la propiedad y la segunda letra, el lado:</p>
+        <table>
+          <tr><th>Clase</th><th>CSS</th></tr>
+          <tr><td><code>p-4</code> / <code>m-4</code></td><td>Los cuatro lados</td></tr>
+          <tr><td><code>px-4</code> / <code>mx-4</code></td><td>Izquierda y derecha (eje x)</td></tr>
+          <tr><td><code>py-4</code> / <code>my-4</code></td><td>Arriba y abajo (eje y)</td></tr>
+          <tr><td><code>pt-4</code>, <code>pr-4</code>, <code>pb-4</code>, <code>pl-4</code></td><td>Un solo lado: top, right, bottom, left</td></tr>
+          <tr><td><code>mx-auto</code></td><td><code>margin-inline: auto</code>: centra un bloque con ancho fijo</td></tr>
+          <tr><td><code>-mt-4</code></td><td>Margen negativo (con un guion delante)</td></tr>
+        </table>
+        <p>Las cajas de colores de este ejemplo solo tienen padding distinto:</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="flex flex-wrap items-start gap-4">
+          <div class="bg-sky-200 p-1">p-1</div>
+          <div class="bg-sky-200 p-4">p-4</div>
+          <div class="bg-sky-200 px-8 py-2">px-8 py-2</div>
+          <div class="bg-sky-200 pt-8 pl-6">pt-8 pl-6</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Espacio entre hijos: <code>space-y</code> y <code>gap</code></h2>
+        <p>Para separar varios elementos seguidos no hace falta poner margen a cada uno. <code>space-y-4</code> en el padre añade margen vertical entre todos sus hijos. Si el padre es flex o grid, se usa <code>gap-4</code>, que verás en las lecciones 4 y 5.</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="max-w-sm space-y-4">
+          <div class="rounded bg-emerald-100 p-3">Primer bloque</div>
+          <div class="rounded bg-emerald-100 p-3">Segundo bloque</div>
+          <div class="rounded bg-emerald-100 p-3">Tercer bloque</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Anchos y altos</h2>
+        <table>
+          <tr><th>Clase</th><th>CSS</th></tr>
+          <tr><td><code>w-32</code>, <code>h-32</code></td><td>Ancho o alto con la escala (32 × 0,25 = 8 rem)</td></tr>
+          <tr><td><code>size-12</code></td><td>Ancho y alto a la vez (cuadrados, iconos, avatares)</td></tr>
+          <tr><td><code>w-1/2</code>, <code>w-1/3</code>, <code>w-2/3</code></td><td>Porcentajes: 50 %, 33,3 %, 66,6 %</td></tr>
+          <tr><td><code>w-full</code></td><td><code>width: 100%</code></td></tr>
+          <tr><td><code>w-screen</code>, <code>h-screen</code></td><td>Todo el ancho o alto de la ventana</td></tr>
+          <tr><td><code>min-h-screen</code></td><td>Como mínimo, el alto de la ventana</td></tr>
+          <tr><td><code>max-w-sm</code>, <code>max-w-md</code>, <code>max-w-xl</code>, <code>max-w-4xl</code></td><td>Ancho máximo: 24, 28, 36 y 56 rem</td></tr>
+        </table>
+      </div>
+      <div class="demo" data-demo>
+        <div class="space-y-2">
+          <div class="w-32 bg-violet-200 p-2">w-32</div>
+          <div class="w-1/2 bg-violet-200 p-2">w-1/2</div>
+          <div class="w-full bg-violet-200 p-2">w-full</div>
+          <div class="size-16 rounded-full bg-violet-400"></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Centrar un bloque</h2>
+        <p>La combinación más usada de esta lección: un ancho máximo y márgenes laterales automáticos.</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="mx-auto max-w-sm rounded-lg bg-amber-100 p-6 text-center">
+          Bloque centrado con <strong>mx-auto max-w-sm</strong>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Valores arbitrarios</h2>
+        <p>Si necesitas un valor que no está en la escala, escríbelo entre corchetes. Funciona con casi todas las clases. Úsalo poco: si lo repites mucho, es mejor añadir el valor al tema (lección 8).</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="w-[230px] bg-rose-200 p-[13px]">
+          w-[230px] y p-[13px]
+        </div>
+      </div>
+    </section>
+
+    <section class="ejercicio">
+      <div class="texto">
+        <h2>Ejercicio: tres cajas</h2>
+        <p>Es el equivalente al ejercicio de espaciado de Bootstrap. Maqueta tres cajas, una debajo de otra, dentro de un bloque centrado de ancho máximo <code>max-w-md</code>:</p>
+        <ol>
+          <li>Una caja con poco espacio interior (8 px).</li>
+          <li>Una caja con mucho espacio interior arriba y abajo (32 px) y normal a los lados (16 px).</li>
+          <li>Una caja con la mitad del ancho del bloque y centrada dentro de él.</li>
+        </ol>
+        <p>Las tres separadas 24 px entre sí, sin poner margen a cada caja.</p>
+      </div>
+      <details>
+        <summary>Ver solución</summary>
+        <div class="demo" data-demo>
+          <div class="mx-auto max-w-md space-y-6">
+            <div class="rounded bg-sky-100 p-2">Caja 1: p-2</div>
+            <div class="rounded bg-sky-100 px-4 py-8">Caja 2: px-4 py-8</div>
+            <div class="mx-auto w-1/2 rounded bg-sky-100 p-4 text-center">Caja 3: w-1/2 mx-auto</div>
+          </div>
+        </div>
+      </details>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="pie-interior">
+      <a href="01-introduccion.html">← Lección 1: Introducción</a>
+      <a href="03-tipografia-color.html">Lección 3: Tipografía y color →</a>
+    </div>
+  </footer>
+</body>
+</html>

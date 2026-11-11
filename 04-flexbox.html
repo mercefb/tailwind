@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>4 · Flexbox | Tailwind CSS en DIW</title>
+  <link rel="stylesheet" href="css/lecciones.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="js/demo.js" defer></script>
+</head>
+<body class="pagina">
+  <header class="cabecera">
+    <div class="cabecera-interior">
+      <a href="index.html">Tailwind CSS en DIW</a>
+      <span>Lección 4 de 8</span>
+    </div>
+  </header>
+
+  <main class="contenido">
+
+    <section>
+      <div class="texto">
+        <h1>4. Flexbox</h1>
+        <p>Tailwind no tiene <code>.row</code> ni <code>.col</code> como Bootstrap. Para colocar elementos se usa Flexbox (esta lección) o Grid (la siguiente) directamente, con las mismas propiedades que ya conoces de CSS.</p>
+        <p>Usa Flexbox cuando colocas elementos <strong>en una dirección</strong>: una fila de botones, una barra de navegación, una imagen con texto al lado.</p>
+        <table>
+          <tr><th>Clase</th><th>CSS</th></tr>
+          <tr><td><code>flex</code></td><td><code>display: flex</code></td></tr>
+          <tr><td><code>flex-row</code> / <code>flex-col</code></td><td><code>flex-direction: row | column</code></td></tr>
+          <tr><td><code>justify-start</code>, <code>justify-center</code>, <code>justify-end</code>, <code>justify-between</code>, <code>justify-around</code></td><td><code>justify-content</code>: reparto en el eje principal</td></tr>
+          <tr><td><code>items-start</code>, <code>items-center</code>, <code>items-end</code>, <code>items-stretch</code></td><td><code>align-items</code>: alineación en el eje cruzado</td></tr>
+          <tr><td><code>gap-4</code>, <code>gap-x-4</code>, <code>gap-y-2</code></td><td>Separación entre hijos</td></tr>
+          <tr><td><code>flex-wrap</code></td><td>Los hijos pasan a la línea siguiente si no caben</td></tr>
+          <tr><td><code>flex-1</code></td><td>El hijo crece para ocupar el espacio libre</td></tr>
+          <tr><td><code>shrink-0</code></td><td>El hijo no se encoge (útil en imágenes e iconos)</td></tr>
+          <tr><td><code>self-center</code>, <code>order-first</code></td><td>Alineación u orden de un solo hijo</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Dirección y separación</h2>
+        <p><code>flex</code> pone los hijos en fila. Con <code>flex-col</code> se ponen en columna. <code>gap</code> los separa sin márgenes.</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="flex gap-3">
+          <div class="rounded bg-sky-200 px-4 py-2">Uno</div>
+          <div class="rounded bg-sky-200 px-4 py-2">Dos</div>
+          <div class="rounded bg-sky-200 px-4 py-2">Tres</div>
+        </div>
+        <div class="mt-6 flex flex-col gap-3">
+          <div class="rounded bg-emerald-200 px-4 py-2">Uno</div>
+          <div class="rounded bg-emerald-200 px-4 py-2">Dos</div>
+          <div class="rounded bg-emerald-200 px-4 py-2">Tres</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Repartir el espacio: <code>justify-*</code></h2>
+        <p>Cambia cómo se reparten los hijos a lo largo de la fila. <code>justify-between</code> es el que más se usa: primer elemento a un lado y último al otro.</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="space-y-3">
+          <div class="flex justify-start gap-2 rounded bg-slate-100 p-2"><span class="rounded bg-violet-300 px-3 py-1">A</span><span class="rounded bg-violet-300 px-3 py-1">B</span><span class="rounded bg-violet-300 px-3 py-1">justify-start</span></div>
+          <div class="flex justify-center gap-2 rounded bg-slate-100 p-2"><span class="rounded bg-violet-300 px-3 py-1">A</span><span class="rounded bg-violet-300 px-3 py-1">B</span><span class="rounded bg-violet-300 px-3 py-1">justify-center</span></div>
+          <div class="flex justify-end gap-2 rounded bg-slate-100 p-2"><span class="rounded bg-violet-300 px-3 py-1">A</span><span class="rounded bg-violet-300 px-3 py-1">B</span><span class="rounded bg-violet-300 px-3 py-1">justify-end</span></div>
+          <div class="flex justify-between rounded bg-slate-100 p-2"><span class="rounded bg-violet-300 px-3 py-1">A</span><span class="rounded bg-violet-300 px-3 py-1">B</span><span class="rounded bg-violet-300 px-3 py-1">justify-between</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Centrar algo en las dos direcciones</h2>
+        <p>Tres clases: <code>flex items-center justify-center</code>. El contenedor necesita altura para que se note el centrado vertical.</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="flex h-40 items-center justify-center rounded-lg bg-amber-100">
+          <p class="rounded bg-white px-4 py-2 shadow">Centrado</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Imagen con texto al lado</h2>
+        <p>Un patrón muy común (comentarios, notificaciones, listas de contactos). <code>shrink-0</code> evita que la foto se aplaste y <code>flex-1</code> hace que el texto ocupe el resto.</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="flex max-w-md items-start gap-4 rounded-lg border border-slate-200 p-4">
+          <img src="https://picsum.photos/seed/avatar-mario/100/100" alt="Foto de Mario" class="size-12 shrink-0 rounded-full">
+          <div class="flex-1">
+            <p class="font-semibold">Mario Sánchez <span class="font-normal text-slate-500">· hace 2 h</span></p>
+            <p class="text-slate-700">He subido la nueva versión del diseño. Decidme qué os parece el menú.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="texto">
+        <h2>Que salten de línea: <code>flex-wrap</code></h2>
+        <p>Sin <code>flex-wrap</code>, los hijos se encogen para caber en una fila. Con él, pasan a la línea siguiente. Reduce el ancho de la ventana para verlo.</p>
+      </div>
+      <div class="demo" data-demo>
+        <div class="flex flex-wrap gap-2">
+          <span class="rounded-full bg-slate-200 px-3 py-1 text-sm">HTML</span>
+          <span class="rounded-full bg-slate-200 px-3 py-1 text-sm">CSS</span>
+          <span class="rounded-full bg-slate-200 px-3 py-1 text-sm">JavaScript</span>
+          <span class="rounded-full bg-slate-200 px-3 py-1 text-sm">Accesibilidad</span>
+          <span class="rounded-full bg-slate-200 px-3 py-1 text-sm">Diseño responsive</span>
+          <span class="rounded-full bg-slate-200 px-3 py-1 text-sm">Tailwind</span>
+          <span class="rounded-full bg-slate-200 px-3 py-1 text-sm">Bootstrap</span>
+          <span class="rounded-full bg-slate-200 px-3 py-1 text-sm">Figma</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="ejercicio">
+      <div class="texto">
+        <h2>Ejercicio: barra de navegación</h2>
+        <p>Maqueta una barra de navegación para una web, solo para escritorio (el menú hamburguesa lo verás en la lección 6):</p>
+        <ul>
+          <li>Fondo blanco, borde inferior gris claro y espacio interior.</li>
+          <li>A la izquierda, el logo: un cuadrado de color con una letra y el nombre de la web al lado.</li>
+          <li>En el centro o a la derecha, cuatro enlaces separados entre sí.</li>
+          <li>A la derecha del todo, un botón «Entrar».</li>
+          <li>Todo alineado verticalmente al centro.</li>
+        </ul>
+      </div>
+      <details>
+        <summary>Ver solución</summary>
+        <div class="demo" data-demo>
+          <header class="flex items-center justify-between border-b border-slate-200 bg-white px-6 py-3">
+            <a href="#" class="flex items-center gap-2 font-bold text-slate-900">
+              <span class="flex size-8 items-center justify-center rounded-lg bg-indigo-600 text-white">L</span>
+              Lumen
+            </a>
+            <nav class="flex items-center gap-6">
+              <a href="#" class="text-slate-600 hover:text-slate-900">Inicio</a>
+              <a href="#" class="text-slate-600 hover:text-slate-900">Cursos</a>
+              <a href="#" class="text-slate-600 hover:text-slate-900">Precios</a>
+              <a href="#" class="text-slate-600 hover:text-slate-900">Contacto</a>
+              <a href="#" class="rounded-lg bg-indigo-600 px-4 py-2 font-semibold text-white hover:bg-indigo-700">Entrar</a>
+            </nav>
+          </header>
+        </div>
+      </details>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <div class="pie-interior">
+      <a href="03-tipografia-color.html">← Lección 3: Tipografía y color</a>
+      <a href="05-grid.html">Lección 5: Grid →</a>
+    </div>
+  </footer>
+</body>
+</html>
