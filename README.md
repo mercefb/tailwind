@@ -21,14 +21,14 @@ Las lecciones funcionan **solo con CDN**: abre cualquier archivo `.html` en el n
 
 ## Orden de las sesiones
 
-| Sesión | Lecciones | Cómo se trabaja |
-| --- | --- | --- |
-| 7 | 1 y 2 | CDN. Explicación con la lección abierta en el proyector y ejercicios en el navegador |
-| 8 | 3 | CDN |
-| 9 | 4 y 5 | CDN |
-| 10 | 6 y 7 | CDN |
-| 11 | Instalación con Vite + lección 8 | Se crea el proyecto con Vite y el tema se escribe en su CSS |
-| 12 | Práctica 2 | Proyecto Vite |
+| Lecciones | Cómo se trabaja |
+| --- | --- |
+| 1 y 2 | CDN. Explicación con la lección abierta en el proyector y ejercicios en el navegador |
+| 3 | CDN |
+| 4 y 5 | CDN |
+| 6 y 7 | CDN |
+| Instalación con Vite + lección 8 | Se crea el proyecto con Vite y el tema se escribe en su CSS |
+| Práctica 2 | Proyecto Vite |
 
 ## Cómo usar este repositorio
 
