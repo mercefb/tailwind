@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mi proyecto con Tailwind</title>
+</head>
+<body class="min-h-screen bg-white text-slate-800 dark:bg-slate-900 dark:text-slate-100">
+
+  <header class="border-b border-slate-200 dark:border-slate-700">
+    <div class="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
+      <a href="#" class="font-display text-xl text-marca-700 dark:text-marca-100">Mi marca</a>
+      <button id="cambiar-tema" type="button" class="rounded-lg border border-slate-300 px-3 py-1 text-sm dark:border-slate-600">Cambiar tema</button>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-5xl px-4 py-16 text-center">
+    <h1 class="font-display text-4xl md:text-5xl">Tailwind funciona</h1>
+    <p class="mt-4 text-slate-600 dark:text-slate-300">Si ves este texto con estilos, el proyecto está bien configurado.</p>
+    <a href="#" class="btn-marca mt-8">Botón de marca</a>
+  </main>
+
+  <!-- No borres esta línea: carga main.js, que importa el CSS -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

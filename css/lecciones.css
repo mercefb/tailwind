@@ -1,0 +1,194 @@
+/* Estilos de las páginas de lección (cabecera, textos, tablas y bloques de código).
+   Es CSS normal, sin Tailwind, para que no se mezcle con los ejemplos.
+   Ojo: este CSS no está en ninguna capa (@layer), así que gana a las utilidades
+   de Tailwind. Por eso solo afecta a .texto, .demo, .codigo y la estructura,
+   nunca al interior de los ejemplos. */
+
+.pagina {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: #f8fafc;
+  color: #1e293b;
+  line-height: 1.6;
+}
+
+.cabecera {
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.cabecera-interior,
+.contenido,
+.pie-interior {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
+
+.cabecera-interior {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cabecera a {
+  color: #0369a1;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cabecera span {
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+.contenido {
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+}
+
+.contenido > section {
+  margin-bottom: 3.5rem;
+}
+
+.texto h1 {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0 0 1rem;
+}
+
+.texto h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.texto h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 1.5rem 0 0.5rem;
+}
+
+.texto p,
+.texto ul,
+.texto ol {
+  margin: 0 0 1rem;
+}
+
+.texto ul,
+.texto ol {
+  padding-left: 1.5rem;
+}
+
+.texto ul { list-style: disc; }
+.texto ol { list-style: decimal; }
+
+.texto li {
+  margin-bottom: 0.25rem;
+}
+
+.texto a {
+  color: #0369a1;
+  text-decoration: underline;
+}
+
+.texto code {
+  font-family: ui-monospace, "Cascadia Code", Menlo, monospace;
+  font-size: 0.9em;
+  background: #e2e8f0;
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+}
+
+.texto .nota {
+  background: #e0f2fe;
+  border-left: 4px solid #0284c7;
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+}
+
+.texto .aviso {
+  background: #fef3c7;
+  border-left: 4px solid #d97706;
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+}
+
+/* Tablas de referencia ("chuletas") */
+.texto table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  background: #fff;
+}
+
+.texto th,
+.texto td {
+  border: 1px solid #e2e8f0;
+  padding: 0.4rem 0.6rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.texto th {
+  background: #f1f5f9;
+}
+
+/* Caja donde se ve el ejemplo */
+.demo {
+  background: #fff;
+  border: 1px dashed #cbd5e1;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* Código del ejemplo (lo crea js/demo.js) y bloques de código escritos a mano */
+.codigo {
+  background: #0f172a;
+  color: #e2e8f0;
+  font-family: ui-monospace, "Cascadia Code", Menlo, monospace;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 0.75rem 0 1rem;
+  white-space: pre;
+}
+
+/* Ejercicio con solución desplegable */
+.ejercicio {
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: 0.5rem;
+  padding: 1.25rem 1.5rem;
+}
+
+.ejercicio summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #047857;
+  margin-top: 0.5rem;
+}
+
+.pie {
+  border-top: 1px solid #e2e8f0;
+  background: #fff;
+}
+
+.pie-interior {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.pie a {
+  color: #0369a1;
+  font-weight: 600;
+  text-decoration: none;
+}

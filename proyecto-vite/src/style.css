@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+/* ---------- Modo oscuro con clase .dark (lección 7) ----------
+   Sin esta línea, dark: sigue la preferencia del sistema operativo. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- Tema propio (lección 8) ---------- */
+@theme {
+  --color-marca-50: #f0f7f3;
+  --color-marca-100: #d9ede1;
+  --color-marca-500: #2f7d4f;
+  --color-marca-600: #25643f;
+  --color-marca-700: #1c4b2f;
+  --font-display: Georgia, "Times New Roman", serif;
+}
+
+/* ---------- Componentes reutilizables (lección 8) ---------- */
+@layer components {
+  .btn-marca {
+    @apply inline-block rounded-lg bg-marca-500 px-4 py-2 font-semibold text-white hover:bg-marca-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marca-500;
+  }
+}
