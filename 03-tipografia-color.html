@@ -38,6 +38,7 @@
           <tr><td><code>tracking-wide</code>, <code>tracking-tight</code></td><td>Espacio entre letras</td></tr>
           <tr><td><code>font-sans</code>, <code>font-serif</code>, <code>font-mono</code></td><td>Familia tipográfica</td></tr>
           <tr><td><code>truncate</code></td><td>Corta el texto con «…» si no cabe en una línea</td></tr>
+          <tr><td><code>list-disc</code>, <code>list-decimal</code>, <code>list-inside</code></td><td>Viñetas o números en las listas (Tailwind los quita por defecto). <code>list-inside</code> los mete dentro del bloque</td></tr>
         </table>
       </div>
       <div class="demo" data-demo>
@@ -45,6 +46,10 @@
         <p class="mt-2 text-lg text-slate-600">Un subtítulo más grande que el texto normal.</p>
         <p class="mt-4 leading-relaxed">Un párrafo con <span class="font-semibold">una parte en seminegrita</span>, <span class="italic">otra en cursiva</span> y <span class="underline">otra subrayada</span>.</p>
         <p class="mt-4 text-xs font-semibold tracking-widest text-slate-500 uppercase">Etiqueta pequeña en mayúsculas</p>
+        <ul class="mt-4 list-inside list-disc space-y-1 text-slate-700">
+          <li>Una lista con viñetas: list-disc</li>
+          <li>Las viñetas dentro del bloque: list-inside</li>
+        </ul>
       </div>
     </section>
 
